@@ -7,7 +7,7 @@ let page = 1;
     page = 1;
   }
 })();
-console.log(page)
+console.log(page);
 
 let apiKey = "47e8febd32a5972b12bef57865cb08a5";
 let streamUrl = "https://streamex.net";
@@ -54,4 +54,5 @@ async function getBySearch(QueryTitle){
 }
 
 //getBySearch("batman")
+
 
