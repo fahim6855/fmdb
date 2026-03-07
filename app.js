@@ -1,11 +1,11 @@
-let page = 20;
+let page = 1;
 
-/**async function getPage(){
+async function getPage(){
            let res = await fetch("https://api.npoint.io/a12de7887d571894822c");
            let data = await res.json();
-           page = data.page
+           return data.page
        }
-       getPage();**/
+       
 
 let apiKey = "47e8febd32a5972b12bef57865cb08a5";
 let streamUrl = "https://streamex.net";
@@ -17,6 +17,7 @@ document.addEventListener("alpine:init", () => {
     activeGenre: "popular",
     searchTitle: "",
     streamLink : streamUrl,
+           page = await getPage(),
     async init() {this.outputMovies = await getPopularMovies()},
     async showActions(id){
       this.activeGenre = id;
@@ -52,6 +53,7 @@ async function getBySearch(QueryTitle){
 }
 
 //getBySearch("batman")
+
 
 
 
