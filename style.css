@@ -1,7 +1,6 @@
 body{
   background-color: #0f172a !important;
   margin: 0;
-  padding: 0; /* Deep Midnight */
 }
 .movie-wrapper {
   display: grid;
@@ -81,7 +80,7 @@ body{
 /* Title and Date */
 .movie-card h5 {
   bottom: 5rem; /* Pushed up to make room for overview */
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
   align-items: center;
   gap: 8px;
