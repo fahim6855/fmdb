@@ -1,4 +1,4 @@
-let page = 0;
+let page = 1;
 
 async function getPage(){
            let res = await fetch("https://api.npoint.io/a12de7887d571894822c");
@@ -18,11 +18,11 @@ document.addEventListener("alpine:init", () => {
     searchTitle: "",
     streamLink : streamUrl,
     async init() {
-               page = await getPage();
+             //  page = await getPage();
                this.outputMovies = await getPopularMovies()},
     async showActions(id){
       this.activeGenre = id;
-               page = await getPage();
+           //    page = await getPage();
       this.outputMovies = await getByGenre(id)
     },
     async showSearch(){this.outputMovies = await getBySearch(this.searchTitle);},
@@ -55,6 +55,7 @@ async function getBySearch(QueryTitle){
 }
 
 //getBySearch("batman")
+
 
 
 
