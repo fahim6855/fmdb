@@ -2,7 +2,7 @@ let page = 1;
 
 (async () => {
   try {
-    page = (await (await fetch("https://api.npoint.io/a12de7887d571894822c")).json()).page || 1;
+    page = (await (await fetch("https://api.npoint.io/a12de7887d571894822c")).json()).page;
   } catch {
     page = 1;
   }
@@ -54,5 +54,6 @@ async function getBySearch(QueryTitle){
 }
 
 //getBySearch("batman")
+
 
 
