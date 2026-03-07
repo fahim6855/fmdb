@@ -1,0 +1,181 @@
+body{
+  background-color: #0f172a !important;
+  margin: 0;
+  padding: 0; /* Deep Midnight */
+}
+.movie-wrapper {
+  display: grid;
+  gap: 20px;
+  padding: 15px;
+  /* Default for Mobile: One big card per row */
+  grid-template-columns: 1fr;
+}
+
+/* 2. Tablet & Desktop (Everything wider than 600px) */
+@media (min-width: 880px) {
+  .movie-wrapper {
+    /* Force exactly 2 columns to keep cards large */
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 3. Large Screens (Optional: If you want 3 columns on big monitors) */
+@media (min-width: 1300px) {
+  .movie-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+    /* Keep this at 2 if you want the cards to remain massive */
+    /* Change to repeat(3, 1fr) if they feel TOO big on desktop */
+  }
+}
+
+.movie-card {
+  position: relative;
+  border-radius: 16px;
+  width: 100%;
+  overflow: hidden;
+  background: #1e293b;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  aspect-ratio: 16 / 9; /* Matches TMDB backdrop ratio */
+  color: white;
+  cursor: pointer;
+  padding: 0;
+}
+
+.movie-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* The Backdrop Image */
+.movie-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Gradient Overlay - The secret sauce for readability */
+.movie-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(15, 23, 42, 0.95) 10%,
+    rgba(15, 23, 42, 0.4) 50%,
+    transparent 100%
+  );
+}
+
+/* Positioning the Text Content */
+.movie-card h5,
+.movie-card p {
+  position: absolute;
+  z-index: 10;
+  margin: 0;
+  padding: 0 1.5rem;
+  pointer-events: none;
+}
+
+/* Title and Date */
+.movie-card h5 {
+  bottom: 5rem; /* Pushed up to make room for overview */
+  font-size: 1rem;
+  font-weight: 700;
+  align-items: center;
+  gap: 8px;
+  width: 90%;
+}
+
+.movie-card h5 span:nth-child(1) {
+  color: #cbd5e1;
+
+}
+
+.date-star {
+  font-size: 0.55rem;
+  font-weight: 400;
+  opacity: 0.9;
+  color: #cbd5e1;
+  width: 100%;
+}
+.date-star span{
+  display: inline;
+}
+
+/* The Rating Badge (KBD) */
+
+/* The Overview Text */
+.movie-card p {
+  bottom: 1.5rem;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #cbd5e1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Clips text at 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.8;
+}
+
+.movie-card {
+  position: relative;
+  border-radius: 12px;
+  background: #1e293b;
+  overflow: hidden;
+}
+/* The Image and Content Container */
+.card-link {
+  
+  cursor: pointer;
+}
+
+.movie-card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+}
+
+/* Ensuring text doesn't overlap with the save button area */
+.movie-card h5 {
+  padding-right: 60px; /* Leave space so title doesn't go under the + button */
+}
+
+/* The Save Button - Mobile Optimized */
+.save-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 30; /* Higher than everything else */
+  width: 40px; /* Large tap area for thumbs */
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    to bottom left,
+    rgba(0, 0, 0, 0.8) 50%,
+    transparent 100%
+  );
+  border: none;
+  color: #dad4cb; /* Gold color for visibility */
+  cursor: pointer;
+  outline: none; /* Removes the blue border */
+  -webkit-tap-highlight-color: transparent; /* Removes the blue box on Android/iOS */
+  transition: background-color 0.1s ease;
+}
+
+/* Visual feedback when tapped on mobile */
+.save-btn:active {
+  transform: scale(0.9);
+  background: #f59e0b !important; /* The yellow rating color */
+  color: #000 !important;
+}
+/* Also remove the focus ring for Chrome/Safari */
+.save-btn:focus {
+  outline: none;
+  box-shadow: none;
+}

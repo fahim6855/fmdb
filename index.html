@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="navbar.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <title>FMDB | Movie DB</title>
+  </head>
+  <body x-data="movieData">
+   <nav class="navbar">
+      <div class="nav-container">
+          <a href="index.html" class="logo"> <i class="fa-solid fa-film"></i> FMDB</a>
+  
+          <form class="search-wrapper" @submit.prevent="showSearch()">
+              <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              
+              <input 
+                  type="text" 
+                  placeholder="Search movies..." 
+                  class="search-input"
+                  x-model="searchTitle"
+                  required
+              >
+              
+              <button type="submit" class="search-submit-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+  
+          <div class="profile-section" x-data="{ open: false }">
+              <button @click="open = !open" @click.away="open = false" class="profile-trigger">
+                  <div class="avatar">
+                     <i class="fa-solid fa-ellipsis-vertical"></i>
+                  </div>
+              </button>
+              <div x-show="open" x-cloak class="dropdown-menu">
+                  <a href="#"> <i class="fa-solid fa-circle-user"></i> &nbsp&nbsp Profile</a>
+                  <a :href="streamLink" target="blank"><i class="fa-solid fa-video"></i> &nbsp&nbsp Stream</a>
+                  <a href="#"> <i class="fa-brands fa-searchengin"></i> &nbsp&nbsp Search</a> 
+                  <a href="#"> <i class="fa-solid fa-bookmark"></i> &nbsp&nbsp Saved</a> 
+                  <hr>
+                  <a href="#" class="login">Login</a>
+              </div>
+          </div>
+      </div>
+  </nav>
+<!-- <hr /> THIS IS genre -->
+  <section class="genre-container">
+   <div class="genre-scroll">
+      <button class="genre-btn" :class="{ 'active': activeGenre === 'popular' }">Popular</button>
+
+      <button @click.prevent="showActions(28)" class="genre-btn" :class="{ 'active': activeGenre === 28 }">Action</button>
+      <button @click.prevent="showActions(12)" class="genre-btn" :class="{ 'active': activeGenre === 12 }">Adventure</button>
+      <button @click.prevent="showActions(35)" class="genre-btn" :class="{ 'active': activeGenre === 35 }">Comedy</button>
+      <button @click.prevent="showActions(18)" class="genre-btn" :class="{ 'active': activeGenre === 18 }">Drama</button>
+      <button @click.prevent="showActions(10751)" class="genre-btn" :class="{ 'active': activeGenre === 10751 }">Family</button>
+      <button @click.prevent="showActions(80)" class="genre-btn" :class="{ 'active': activeGenre === 80 }">Crime</button>
+      <button @click.prevent="showActions(878)" class="genre-btn" :class="{ 'active': activeGenre === 878 }">Sci-Fi</button>
+      <button @click.prevent="showActions(53)" class="genre-btn" :class="{ 'active': activeGenre === 53 }">Thriller</button>
+      <button @click.prevent="showActions(27)" class="genre-btn" :class="{ 'active': activeGenre === 27 }">Horror</button>
+      <button @click.prevent="showActions(10749)" class="genre-btn" :class="{ 'active': activeGenre === 10749 }">Romance</button>
+      <button @click.prevent="showActions(16)" class="genre-btn" :class="{ 'active': activeGenre === 16 }">Animation</button>
+   </div>
+</section>
+    <!-- <hr /> THIS IS Cards reload -->
+    <main class="container">
+      <section class="popular movie-wrapper">
+         <template x-for="movie in outputMovies" :key="movie.id">
+            <article class="movie-card">
+               <button 
+                  class="save-btn"
+                  @click="navigator.clipboard.writeText(movie.title)"
+               >
+                  <i class="fa-solid fa-copy"></i>
+               </button>
+               <div class="card-link" @click="console.log('Go to movie details')">
+                  <img :src="'https://image.tmdb.org/t/p/w500' + movie.backdrop_path" alt="">
+                  <h5>
+                     <span x-text="movie.title"></span>
+                     <div class="date-star">
+                        (<span x-text="movie.release_date ? movie.release_date.split('-')[1] + '-' + movie.release_date.split('-')[0] : 'N/A'"></span>)
+                        <i class="fas fa-star"></i>
+                        <span x-text="movie.vote_average.toFixed(1)"></span>
+                     </div>
+
+                     </h5>
+                     <p x-text="movie.overview"></p>
+
+
+               </div>
+            </article>
+         </template>
+      </section>
+    </main>
+    <footer style="margin: 0;"><p style="text-align: center;">Data provided by TMDB | Made by Fahim Afnan</p></footer>
+      <script src="/app.js"></script>
+  </body>
+</html>

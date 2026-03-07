@@ -1,0 +1,270 @@
+/* 1. Design Tokens (Variables) */
+:root {
+    --bg-dark: #0f172a;       /* Deepest Navy */
+    --bg-card: #1e293b;       /* Slate Blue */
+    --accent-yellow: #f59e0b; /* Rating/Logo Gold */
+    --text-main: #f8fafc;     /* Off-white */
+    --text-muted: #94a3b8;    /* Muted Grey */
+    --danger: #ef4444;        /* Logout Red */
+    --glass-bg: rgba(15, 23, 42, 0.8);
+}
+
+/* 2. Navbar Container */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+/* 3. Logo */
+.logo {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--accent-yellow);
+    text-decoration: none;
+    letter-spacing: -1px;
+    flex-shrink: 0;
+}
+
+/* 4. Search Bar */
+/* Update the wrapper to handle the button */
+/* 1. The Search Form Container */
+.search-wrapper {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    flex: 1;
+    max-width: 450px;
+    margin: 0 15px !important; /* Spacing between Logo and Profile */
+    padding: 0 !important;
+    border: none !important;
+}
+
+/* 2. The Input Field Overwrite */
+.search-input {
+    width: 100% !important;
+    height: 42px !important;
+    margin-bottom: 0 !important; /* Removes Pico's forced bottom gap */
+    padding: 0 100px 0 45px !important; /* Left space for icon, Right for button */
+    
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 50px !important;
+    
+    color: #f8fafc !important;
+    font-size: 0.95rem !important;
+    transition: all 0.2s ease-in-out !important;
+}
+
+.search-input:focus {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border-color: #f59e0b !important; /* Your Rating Yellow */
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15) !important;
+}
+
+/* 3. The Magnifying Glass Icon */
+.search-icon {
+    position: absolute !important;
+    left: 15px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    color: #94a3b8 !important;
+    pointer-events: none !important;
+    z-index: 2;
+}
+
+/* 4. The Submit Button (The "Inside" Look) */
+.search-submit-btn {
+    position: absolute !important;
+    right: 5px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    
+    /* Resetting Pico Button Defaults */
+    width: auto !important;
+    height: 32px !important;
+    padding: 0 15px !important;
+    margin: 0 !important;
+    
+    background-color: #f59e0b !important; /* Yellow Bg */
+    color: #000 !important; /* Black text for contrast */
+    border: none !important;
+    border-radius: 20px !important;
+    
+    font-size: 0.8rem !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    cursor: pointer;
+    z-index: 3;
+    transition: transform 0.1s ease, background 0.2s ease !important;
+}
+
+.search-submit-btn:hover {
+    background-color: #d97706 !important;
+}
+
+.search-submit-btn:active {
+    transform: translateY(-50%) scale(0.95) !important;
+}
+
+/* 5. Mobile Responsiveness */
+@media (max-width: 500px) {
+    .search-wrapper {
+        margin: 0 5px !important;
+    }
+    
+    .search-submit-btn {
+        padding: 0 10px !important;
+        font-size: 0.75rem !important;
+    }
+    
+    .search-input {
+        padding-right: 80px !important;
+        font-size: 0.85rem !important;
+    }
+}
+/* 5. Profile Section */
+.profile-section {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.profile-trigger {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--accent-yellow);
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.profile-trigger:active .avatar {
+    transform: scale(0.9);
+}
+
+/* 6. Dropdown Menu */
+[x-cloak] { display: none !important; }
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 15px);
+    right: 0;
+    width: 200px;
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    padding: 8px;
+    overflow: hidden;
+}
+
+.dropdown-menu a {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--accent-yellow);
+}
+
+.dropdown-menu hr {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 6px 0;
+}
+
+.login {
+    color: var(--accent-yellow) !important;
+}
+
+/* 7. Genres STARTS*/
+/* 1. Main Section Container */
+/* 1. Main Section Container - NO LONGER STICKY */
+.genre-container {
+    padding: 20px 0 10px 0;
+    background-color: transparent !important; /* Let the body background show */
+    position: relative; /* Normal flow of the page */
+    width: 100%;
+    z-index: 10; /* Lower than navbar so it goes under if needed */
+    margin-bottom: 10px;
+}
+
+/* 2. The Scrollable Wrapper */
+.genre-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 0 20px 15px 20px;
+    /* Hide scrollbars */
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+    cursor: grab; /* Shows user they can pull it */
+}
+
+.genre-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* 3. The Genre Buttons (Refined) */
+.genre-btn {
+    flex: 0 0 auto;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #94a3b8 !important;
+    padding: 10px 22px !important;
+    border-radius: 50px !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    margin: 0 !important; /* Force Pico to stop adding margins */
+}
+
+.genre-btn:hover {
+    border-color: #f59e0b !important;
+    color: #fff !important;
+}
+
+.genre-btn.active {
+    background: #f59e0b !important;
+    color: #000 !important;
+    border-color: #f59e0b !important;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
+}
