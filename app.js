@@ -22,6 +22,7 @@ document.addEventListener("alpine:init", () => {
                this.outputMovies = await getPopularMovies()},
     async showActions(id){
       this.activeGenre = id;
+               page = await getPage()
       this.outputMovies = await getByGenre(id)
     },
     async showSearch(){this.outputMovies = await getBySearch(this.searchTitle);},
@@ -54,6 +55,7 @@ async function getBySearch(QueryTitle){
 }
 
 //getBySearch("batman")
+
 
 
 
