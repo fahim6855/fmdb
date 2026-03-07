@@ -1,4 +1,4 @@
-let page = 10;
+let page = 20;
 
 /**async function getPage(){
            let res = await fetch("https://api.npoint.io/a12de7887d571894822c");
@@ -52,6 +52,7 @@ async function getBySearch(QueryTitle){
 }
 
 //getBySearch("batman")
+
 
 
 
