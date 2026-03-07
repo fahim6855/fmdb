@@ -1,11 +1,11 @@
-let page = 1;
+let page = 10;
 
-async function getPage(){
+/**async function getPage(){
            let res = await fetch("https://api.npoint.io/a12de7887d571894822c");
            let data = await res.json();
            page = data.page
        }
-       getPage();
+       getPage();**/
 
 let apiKey = "47e8febd32a5972b12bef57865cb08a5";
 let streamUrl = "https://streamex.net";
@@ -52,6 +52,7 @@ async function getBySearch(QueryTitle){
 }
 
 //getBySearch("batman")
+
 
 
 
