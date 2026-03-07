@@ -1,4 +1,4 @@
-let page = 1;
+let page = Math.floor(Math.random() * 20) + 1;
 
 async function getPage(){
            let res = await fetch("https://api.npoint.io/a12de7887d571894822c");
@@ -55,6 +55,7 @@ async function getBySearch(QueryTitle){
 }
 
 //getBySearch("batman")
+
 
 
 
