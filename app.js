@@ -17,7 +17,7 @@ document.addEventListener("alpine:init", () => {
     activeGenre: "popular",
     searchTitle: "",
     streamLink : streamUrl,
-           page = await getPage(),
+          // page = await getPage(),
     async init() {this.outputMovies = await getPopularMovies()},
     async showActions(id){
       this.activeGenre = id;
@@ -53,6 +53,7 @@ async function getBySearch(QueryTitle){
 }
 
 //getBySearch("batman")
+
 
 
 
