@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="navbar.css" />
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <title>FMDB | Movie DB</title>
   </head>
   <body x-data="movieData">
@@ -38,8 +37,8 @@
               </button>
               <div x-show="open" x-cloak class="dropdown-menu">
                   <a href="#"> <i class="fa-solid fa-circle-user"></i> &nbsp&nbsp Profile</a>
-                  <a :href="streamLink" target="blank"><i class="fa-solid fa-video"></i> &nbsp&nbsp Stream</a>
-                  <a href="https://github.com/fahim6855/fmdb/blob/main/app.js"> <i class="fa-brands fa-searchengin"></i> &nbsp&nbsp Search</a> 
+                  <a href="streamLink" target="_blank"><i class="fa-solid fa-video"></i> &nbsp&nbsp Stream</a>
+                  <a href="#"> <i class="fa-brands fa-searchengin"></i> &nbsp&nbsp Search</a> 
                   <a href="#"> <i class="fa-solid fa-bookmark"></i> &nbsp&nbsp Saved</a> 
                   <hr>
                   <a href="#" class="login">Login</a>
@@ -52,48 +51,49 @@
    <div class="genre-scroll">
       <button class="genre-btn" :class="{ 'active': activeGenre === 'popular' }">Popular</button>
 
-      <button @click.prevent="showActions(28)" class="genre-btn" :class="{ 'active': activeGenre === 28 }">Action</button>
-      <button @click.prevent="showActions(12)" class="genre-btn" :class="{ 'active': activeGenre === 12 }">Adventure</button>
-      <button @click.prevent="showActions(35)" class="genre-btn" :class="{ 'active': activeGenre === 35 }">Comedy</button>
-      <button @click.prevent="showActions(18)" class="genre-btn" :class="{ 'active': activeGenre === 18 }">Drama</button>
-      <button @click.prevent="showActions(10751)" class="genre-btn" :class="{ 'active': activeGenre === 10751 }">Family</button>
-      <button @click.prevent="showActions(80)" class="genre-btn" :class="{ 'active': activeGenre === 80 }">Crime</button>
-      <button @click.prevent="showActions(878)" class="genre-btn" :class="{ 'active': activeGenre === 878 }">Sci-Fi</button>
-      <button @click.prevent="showActions(53)" class="genre-btn" :class="{ 'active': activeGenre === 53 }">Thriller</button>
-      <button @click.prevent="showActions(27)" class="genre-btn" :class="{ 'active': activeGenre === 27 }">Horror</button>
-      <button @click.prevent="showActions(10749)" class="genre-btn" :class="{ 'active': activeGenre === 10749 }">Romance</button>
-      <button @click.prevent="showActions(16)" class="genre-btn" :class="{ 'active': activeGenre === 16 }">Animation</button>
+      <button @click="showActions(28)" class="genre-btn" :class="{ 'active': activeGenre === 28 }">Action</button>
+      <button @click="showActions(12)" class="genre-btn" :class="{ 'active': activeGenre === 12 }">Adventure</button>
+      <button @click="showActions(35)" class="genre-btn" :class="{ 'active': activeGenre === 35 }">Comedy</button>
+      <button @click="showActions(18)" class="genre-btn" :class="{ 'active': activeGenre === 18 }">Drama</button>
+      <button @click="showActions(10751)" class="genre-btn" :class="{ 'active': activeGenre === 10751 }">Family</button>
+      <button @click="showActions(80)" class="genre-btn" :class="{ 'active': activeGenre === 80 }">Crime</button>
+      <button @click="showActions(878)" class="genre-btn" :class="{ 'active': activeGenre === 878 }">Sci-Fi</button>
+      <button @click="showActions(53)" class="genre-btn" :class="{ 'active': activeGenre === 53 }">Thriller</button>
+      <button @click="showActions(27)" class="genre-btn" :class="{ 'active': activeGenre === 27 }">Horror</button>
+      <button @click="showActions(16)" class="genre-btn" :class="{ 'active': activeGenre === 16 }">Animation</button>
+      <button @click="showActions(10749)" class="genre-btn" :class="{ 'active': activeGenre === 10749 }">Romance</button>
    </div>
 </section>
     <!-- <hr /> THIS IS Cards reload -->
     <main class="container">
       <section class="popular movie-wrapper">
          <template x-for="movie in outputMovies" :key="movie.id">
-            <article class="movie-card">
+            <article class="movie-card" @click="goToMovie(movie.id)">
+               <div class="card-link">
+
+                  <a :href="'https://www.themoviedb.org/movie/' + movie.id" target="_blank" @click.stop>
+                    <img :src="'https://image.tmdb.org/t/p/w500' + movie.backdrop_path" alt="">
+                  </a>
+                  
+                  <h5>
+                     <span x-text="movie.title"></span>
+                     <div class="date-star">
+                        (<span x-text="movie.release_date ? movie.release_date.split('-')[1] + '-' + movie.release_date.split('-')[0] : 'N/A'"></span>)
+                        <i class="fas fa-star"></i>
+                        <span x-text="movie.vote_average.toFixed(1)"></span>
+                     </div>
+
+                     </h5>
+                     <p x-text="movie.overview"></p>
+
+
+               </div>
                <button 
-                  class="save-btn"
-                  @click="navigator.clipboard.writeText(movie.title)"
-               >
-                  <i class="fa-solid fa-copy"></i>
-               </button>
-               <a class="card-link"
-   :href="'https://www.themoviedb.org/movie/' + movie.id"
-   target="_blank">
-
-  <img :src="'https://image.tmdb.org/t/p/w500' + movie.backdrop_path" alt="">
-
-  <h5>
-    <span x-text="movie.title"></span>
-
-    <div class="date-star">
-      (<span x-text="movie.release_date ? movie.release_date.split('-')[1] + '-' + movie.release_date.split('-')[0] : 'N/A'"></span>)
-      <i class="fas fa-star"></i>
-      <span x-text="movie.vote_average.toFixed(1)"></span>
-    </div>
-
-  </h5>
-
-</a>
+               class="save-btn"
+               @click="navigator.clipboard.writeText(movie.title)"
+            >
+               <i class="fa-solid fa-copy"></i>
+            </button>
             </article>
          </template>
       </section>
@@ -102,7 +102,3 @@
       <script src="/app.js"></script>
   </body>
 </html>
-
-
-
-
