@@ -36,7 +36,7 @@ document.addEventListener("alpine:init", () => {
 //getPopularMovies();
 async function getPopularMovies() {
   let resPop = await fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${page}`
+    `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=1`
   );
   let dataPop = await resPop.json();
   return dataPop.results;
@@ -58,6 +58,7 @@ async function getBySearch(QueryTitle){
 }
 
 //getBySearch("batman")
+
 
 
 
