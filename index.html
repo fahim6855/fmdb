@@ -77,8 +77,10 @@
                   <i class="fa-solid fa-copy"></i>
                </button>
                <div class="card-link" @click="console.log('Go to movie details')">
-                  <img :src="'https://image.tmdb.org/t/p/w500' + movie.backdrop_path" alt="">
-                  <h5>
+                  <a :href="'https://www.themoviedb.org/movie/'+movie.id">
+                 <img :src="'https://image.tmdb.org/t/p/w500' + movie.backdrop_path" alt="">
+                  </a>
+                    <h5>
                      <span x-text="movie.title"></span>
                      <div class="date-star">
                         (<span x-text="movie.release_date ? movie.release_date.split('-')[1] + '-' + movie.release_date.split('-')[0] : 'N/A'"></span>)
@@ -99,4 +101,5 @@
       <script src="/app.js"></script>
   </body>
 </html>
+
 
