@@ -26,6 +26,9 @@ document.addEventListener("alpine:init", () => {
       this.outputMovies = await getByGenre(id)
     },
     async showSearch(){this.outputMovies = await getBySearch(this.searchTitle);},
+             goToMovie(movieId) {
+  window.location.href = `https://www.themoviedb.org/movie/${movieId}`;
+},
   }));
 });
 
@@ -55,6 +58,7 @@ async function getBySearch(QueryTitle){
 }
 
 //getBySearch("batman")
+
 
 
 
